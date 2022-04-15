@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TODO LIST</title>
+    <link
+      rel="stylesheet"
+      href="https://bootswatch.com/5/litera/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-6 col-lg-5 mx-auto text-center py-4">
+          <h2 class="text-center">Enter task</h2>
+          <form method="POST" action="/add">
+            <div class="form-group">
+              <input
+                class="form-control"
+                type="text"
+                name="task"
+                id="task"
+                placeholder="enter a task"
+              />
+            </div>
+
+            <div class="form-group">
+              <input type="submit" class="btn btn-lg btn-success" value="add" />
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- // -->
+      <!-- // -->
+      <% for(var tasks of data){ %>
+      <form
+        action="/delete"
+        method="post"
+        class="form-inline my-3"
+        method="POST"
+      >
+        <p><%= tasks.task %></p>
+        <input type="hidden" name="id" value=" <%= tasks._id %> " />
+        <% if(tasks.status){ %> <%}else{%>
+        <button type="submit" class="btn btn-primary mx-3" formaction="/update">
+          Mark Completed
+        </button>
+        <%} %>
+        <button type="submit" class="btn btn-danger mx-3">Delete</button>
+      </form>
+      <% } %>
+    </div>
+  </body>
+</html>
